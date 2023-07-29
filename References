@@ -1,0 +1,136 @@
+py -m virtualenv <envname>
+<envname>\Scripts\activate.bat
+To configure static files in djnago
+python -m pip install Django
+pip install django django-extensions
+django-admin startproject django_orm
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'elderco',
+        'USER':'root',
+        'PASSWORD':'Weekend@2023',
+        'HOST':'localhost',
+        'PORT':'3306',
+    }
+}
+
+**************
+-------- To chek the MySQL connectivity---------------------
+# https://codemy.com/git
+
+# Install Mysql on your computer
+# https://dev.mysql.com/downloads/installer/
+# pip install mysql
+# pip install mysql-connector
+# pip install mysql-connector-python 
+# python mydb.py
+# python manage.py migrate
+# python manage.py createsuperuser
+#git add .
+# git commit -am 'Initial Commit'
+#  Create a new repository in github'
+# git remote add origin https://github.com/cnnsvm/Django-CRM.git
+# git branch -M main
+# git push -u origin main
+# python manage.py runserver
+# super user Girija
+#pwd Weekend@2023
+# edit "dcrm/urls.py" file
+#localhost:8000/admin
+# python manage.py shell_plus --print-sql
+>>> e = Employee(first_name='John',last_name='Doe')
+>>> e.save()
+INSERT INTO "hr_employee" ("first_name", "last_name")
+VALUES ('John', 'Doe') RETURNING "hr_employee"."id"
+Execution time: 0.003234s [Database: default]
+
+>>> e = Employee(first_name='Jane',last_name='Doe')
+>>> e.save()
+INSERT INTO "hr_employee" ("first_name", "last_name")
+VALUES ('Jane', 'Doe') RETURNING "hr_employee"."id"
+Execution time: 0.002195s [Database: default]
+
+Employee.objects.all()
+
+===================
+>>> e = Employee.objects.get(id=1)
+SELECT "hr_employee"."id",
+       "hr_employee"."first_name",
+       "hr_employee"."last_name"
+  FROM "hr_employee"
+ WHERE "hr_employee"."id" = 1
+ LIMIT 21
+Execution time: 0.001003s [Database: default]
+>>> e
+<Employee: John Doe>
+================================
+Employee.objects.filter(first_name='Jane')
+-------------------------------
+e = Employee.objects.get(id=2)
+e.last_name = 'Smith'
+e.save()
+------------------------
+e.delete()
+Employee.objects.all().delete()
+--------------------------
+
+import mysql.connector
+
+dataBase = mysql.connector.connect(
+ host='localhost',
+ user='root',
+ passwd='Weekend@2023' 
+
+)
+
+#Prepare a cursor object
+cursorobject = dataBase.cursor()
+
+#Create a databse
+cursorobject.execute('CREATE DATABASE elderco')
+
+print("All done")
+
+***********************************
+
+https://learndjango.com/tutorials/django-static-files-and-templates
+
+https://www.pythontutorial.net/django-tutorial/
+Models:
+First, define new models or make changes to existing models.
+Second, make new migrations by running the makemigrations command.
+Third, apply the changes from the models to the database by executing the migrate command.
+
+python manage.py makemigrations
+python manage.py migrate
+
+To create a superuser account, you use the createsuperuser command this:
+
+python manage.py createsuperuser
+
+python manage.py runserver
+
+To show the Post model on the admin page, you need to register it in the admin.py of the blog application:
+
+from django.contrib import admin
+from .models import Post
+admin.site.register(Post)
+
+Django forms:
+All forms in Django inherit from the django.forms.Form class. The ModelForm class allows you to create a form that associates with a model .
+
+First, create a new file forms.py in the blog application’s directory.
+
+Second, define a new form called PostForm that inherits from the ModelForm class:
+
+Third, define a route that displays the PostForm:
+Fourth, define create_post() function that displays the form:
+https://www.pythontutorial.net/django-tutorial/django-form/
+Fifth, create the post_form.html template:
+https://djangocentral.com/static-assets-in-django/
+https://learndjango.com/tutorials/django-static-files-and-templates
+https://data-flair.training/blogs/django-tutorials-home/#tutorials
+

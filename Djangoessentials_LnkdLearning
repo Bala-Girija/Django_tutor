@@ -1,0 +1,171 @@
+django-admin startproject smartphones .
+python manage.py runserver
+django-admin startapp home
+edit the below files
+'home'->views.py
+edit the 'smartphones'->urls.py
+home->templates->home->welcome.html
+https://github.com/LinkedInLearning/django-esst-2894047/blob/01-03e/home/templates/home/welcome.html
+edit the ome->views.py file
+https://github.com/LinkedInLearning/django-esst-2894047/blob/01-03e/home/views.py
+http://127.0.0.1:8000/home
+===========================
+https://github.com/LinkedInLearning/django-esst-2894047/tree/01-04b
+edit the 'home'->urls.py
+'smartphones'->urls.py
+https://github.com/LinkedInLearning/django-esst-2894047/tree/02-01b
+python manage.py migrate
+python manage.py createsuperuser
+https://github.com/LinkedInLearning/django-esst-2894047/tree/02-02b
+https://github.com/LinkedInLearning/django-esst-2894047/tree/02-03b
+https://github.com/LinkedInLearning/django-esst-2894047/tree/02-03e
+home->templates->home->authorized.html
+home->views.py
+home->urls.py
+
+http://127.0.0.1:8000/authorized
+First logout from 'admin' portal and If you try to access the 'authorized url.It will redirect you to the 'Admin' login page
+=======================
+django-admin startapp notes
+edit the settings.py file
+enter the name of the app 'notes'in 
+edit the models.py file add 'Notes' model 
+python manage.py makemigrations
+python manage.py migrate
+https://github.com/LinkedInLearning/django-esst-2894047/tree/03-03e
+http://127.0.0.1:8000/admin
+python manage.py shell
+In the interpreter which is diaplying at the console type below
+from notes.models import Notes
+mynote=Notes.objects.get(pk="1")
+mynote.title
+mynote.text
+Notes.objects.all()
+new_note=Notes.objects.create(title="A second note",text="This is a second note")
+Notes.objects.all()
+Notes.objects.filter(title__startswith="My")
+Notes.objects.filter(title__icontains="Django")
+Notes.objects.exclude(title__icontains="Django")
+Notes.objects.filter(title__icontains="Django").exclude(title__icontains="Django")
+
+===========================
+https://github.com/LinkedInLearning/django-esst-2894047/tree/04-01e
+notes->view.py
+notes->urls.py
+project_folder->urls.py
+notes->templates->notes->notes_list.html
+http://127.0.0.1:8000/smart/notes
+====================
+
+https://github.com/LinkedInLearning/django-esst-2894047/tree/04-02e
+notes->views.py
+notes->templates->notes->notes_details.html
+notes->urls.py
+http://127.0.0.1:8000/smart/notes/1
+
+===================
+https://github.com/LinkedInLearning/django-esst-2894047/tree/04-03e
+home -> views.py
+home->urls.py
+http://127.0.0.1:8000/home
+====================
+https://github.com/LinkedInLearning/django-esst-2894047/blob/04-04e/notes/views.py
+notes->views.py
+notes->urls.py
+http://127.0.0.1:8000/smart/notes
+http://127.0.0.1:8000/smart/notes/1
+======================
+create 'static' folder inside project folder.Inside 'static' folder create 'css' folder.Inside that create 'style.css' file
+edit 'settings.py' file add the below lines under STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [ 
+    BASE_DIR / 'static',
+]
+
+Edit file notes->notes_list.html
+http://127.0.0.1:8000/smart/notes
+===============
+https://github.com/LinkedInLearning/django-esst-2894047/tree/05-03b/static/templates
+create 'static'->'templates'->base.html
+notes->templates->notes->notes_list.html
+settings.py file
+TEMPLATES=[
+DIRS=[]
+]
+================
+edit the 'static'->'templates'->base.html
+http://127.0.0.1:8000/home
+home->templates->home->welcome.html
+notes->urls.py
+notes->templates->notes->notes_list.html
+notes->templates->notes->notes_detail.html
+
+https://github.com/LinkedInLearning/django-esst-2894047/tree/05-03e
+===========================
+notes->views.py->
+notes->urls.py
+notes->templates->notes->notes_form.html
+https://github.com/LinkedInLearning/django-esst-2894047/tree/06-01e/notes
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="{% url 'notes.new' %}" method='POST'>{% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary my-5">Submit</button>
+</form>
+{% endblock %}
+
+=====================================
+https://github.com/LinkedInLearning/django-esst-2894047/blob/06-03e/notes/templates/notes/notes_form.html
+notes->forms.py
+notes->views.py
+static->css->style.css
+notes->notes_form.html
+=============================
+edit 'notes->forms.py
+https://github.com/LinkedInLearning/django-esst-2894047/tree/06-04e
+notes->views.py
+notes->urls.py
+http://127.0.0.1:8000/smart/notes/1/edit
+notes->notes_form.html
+notes->notes_details.html
+http://127.0.0.1:8000/smart/notes/1/edit
+==================
+https://github.com/LinkedInLearning/django-esst-2894047/tree/07-02e
+notes->views.py
+notes->urls.py
+http://127.0.0.1:8000/smart/notes/1/edit
+notes->notes_form.html
+notes->notes_details.html
+create notes->notes_delete.html
+=========================
+https://github.com/LinkedInLearning/django-esst-2894047/blob/08-03e/notes/views.py
+notes->models.py
+python manage.py makemigrations
+I any error occurs in console,select 1 and press enter.This will fill the Notes which are already in the table for the user column with id 1 which means those notes are
+created by admin
+python manage.py migrate
+python manage.py shell
+An interactive console will be opened
+from django.contrib.auth.models import User
+user=User.objects.get(pk=1)
+user.notes.count()
+user.notes.all()
+Edit the file notes->views.py
+http://127.0.0.1:8000/smart/notes/new
+==================================================
+https://github.com/LinkedInLearning/django-esst-2894047/blob/09-03e/static/templates/base.html
+home->views.py
+home->urls.py
+home->templates->home->login.html
+http://127.0.0.1:8000/login
+settings.py
+add below line
+LOGIN_REDIRECT_URL='/smart/notes'
+home->templates->home->logout.html
+home->templates->home->register.html
+'project folder'->static->templates->base.html
+
+
